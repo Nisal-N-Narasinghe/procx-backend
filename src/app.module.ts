@@ -2,8 +2,6 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Todo } from './typeorm/entities/Todo';
-import { TodosModule } from './todos/todos.module';
 import { Supplier } from './typeorm/entities/Supplier';
 import { SuppliersModule } from './suppliers/suppliers.module';
 
@@ -16,10 +14,9 @@ import { SuppliersModule } from './suppliers/suppliers.module';
       username: 'doadmin',
       password: 'AVNS_RTTlLG6iD1sutqHe2K6',
       database: 'defaultdb',
-      entities: [Todo, Supplier],
+      entities: [Supplier],
       synchronize: true, // every single time we do a modification, then this automatically updates
     }),
-    TodosModule,
     SuppliersModule,
   ],
   controllers: [AppController],
