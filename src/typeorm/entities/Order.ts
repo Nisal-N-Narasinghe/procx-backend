@@ -22,4 +22,7 @@ export class Order {
 
   @Column()
   qty: number;
+
+  @Column()
+  createdAt: Date;
 }
