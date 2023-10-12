@@ -15,10 +15,6 @@ export class Supplier {
   @Column()
   address: string;
 
-  //TODO: create relation with new supervisor class
-  @Column()
-  supervisor: string;
-
   @Column()
   contractStart: Date;
 
