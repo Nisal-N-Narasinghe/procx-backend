@@ -1,4 +1,4 @@
-export class UpdateItemDto {
+export class UpdateBillDto {
   OrderId: string;
   amount: number;
   status: string;

@@ -17,7 +17,6 @@ export class Bill {
   status: string;
 
   @Column({
-    default: () => "STR_TO_DATE('00-00-0000', '%d-%m-%Y')",
     nullable: true,
   })
   PaidAt: Date;

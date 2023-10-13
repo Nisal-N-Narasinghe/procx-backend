@@ -1,4 +1,4 @@
-export class CreateItemDto {
+export class CreateBillDto {
   OrderId: string;
   amount: number;
   status: string;
