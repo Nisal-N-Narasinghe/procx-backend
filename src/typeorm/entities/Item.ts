@@ -15,8 +15,5 @@ export class Item {
   description: string;
 
   @Column()
-  imageUrl: string;
-
-  @Column()
   createdAt: Date;
 }
