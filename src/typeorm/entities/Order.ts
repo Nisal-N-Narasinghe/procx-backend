@@ -23,6 +23,9 @@ export class Order {
   @Column()
   qty: number;
 
+  @Column({ nullable: true, default: 'pending' })
+  status: string;
+
   @Column()
   createdAt: Date;
 }

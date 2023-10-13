@@ -4,5 +4,6 @@ export class CreateOrderDto {
   supllier: string;
   item: string;
   qty: number;
+  status: string;
   createdAt: Date;
 }
