@@ -6,7 +6,7 @@ export class Bill {
   @PrimaryGeneratedColumn()
   id: number;
 
-  //Todo connect orders table
+  //Todo connect Invoice table
   @Column()
   InvoiceId: string;
 
