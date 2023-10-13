@@ -9,6 +9,8 @@ import { ItemsModule } from './items/items.module';
 import 'dotenv/config';
 import { Order } from './typeorm/entities/Order';
 import { OrdersModule } from './orders/orders.module';
+import { Bill } from './typeorm/entities/Bill';
+import { BillsModule } from './bills/bills.module';
 
 @Module({
   imports: [
@@ -19,12 +21,13 @@ import { OrdersModule } from './orders/orders.module';
       username: process.env.DB_USERNAME,
       password: process.env.DB_PASSWORD,
       database: process.env.DB_DEFAULT_SCHEMA,
-      entities: [Supplier, Item, Order],
+      entities: [Supplier, Item, Order, Bill],
       synchronize: true, // every single time we do a modification, then this automatically updates
     }),
     SuppliersModule,
     ItemsModule,
     OrdersModule,
+    BillsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
