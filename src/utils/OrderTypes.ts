@@ -4,6 +4,8 @@ export type CreateOrderParams = {
   supllier: string;
   item: string;
   qty: number;
+  supplierstatus: string;
+  managerstatus: string;
   createdAt: Date;
 };
 
@@ -13,5 +15,7 @@ export type UpdateOrderParams = {
   supllier: string;
   item: string;
   qty: number;
+  supplierstatus: string;
+  managerstatus: string;
   createdAt: Date;
 };

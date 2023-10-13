@@ -4,5 +4,7 @@ export class UpdateOrderDto {
   supllier: string;
   item: string;
   qty: number;
+  supplierstatus: string;
+  managerstatus: string;
   createdAt: Date;
 }

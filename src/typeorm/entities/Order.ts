@@ -23,6 +23,12 @@ export class Order {
   @Column()
   qty: number;
 
+  @Column({ nullable: true, default: 'pending' })
+  supplierstatus: string;
+
+  @Column({ nullable: true, default: 'pending' })
+  managerstatus: string;
+
   @Column()
   createdAt: Date;
 }
