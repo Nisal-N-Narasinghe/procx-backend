@@ -1,14 +1,12 @@
 export type CreateBillParams = {
-  OrderId: string;
-  amount: number;
+  InvoiceId: string;
   status: string;
   PaidAt: Date;
   createdAt: Date;
 };
 
 export type UpdateBillParams = {
-  OrderId: string;
-  amount: number;
+  InvoiceId: string;
   status: string;
   PaidAt: Date;
   createdAt: Date;

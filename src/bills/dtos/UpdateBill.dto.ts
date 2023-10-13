@@ -1,6 +1,5 @@
 export class UpdateBillDto {
-  OrderId: string;
-  amount: number;
+  InvoiceId: string;
   status: string;
   PaidAt: Date;
   createdAt: Date;

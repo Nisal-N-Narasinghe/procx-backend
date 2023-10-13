@@ -8,10 +8,7 @@ export class Bill {
 
   //Todo connect orders table
   @Column()
-  OrderId: string;
-
-  @Column()
-  amount: number;
+  InvoiceId: string;
 
   @Column({ nullable: true, default: 'pending' })
   status: string;

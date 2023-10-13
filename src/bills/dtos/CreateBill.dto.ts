@@ -1,6 +1,5 @@
 export class CreateBillDto {
-  OrderId: string;
-  amount: number;
+  InvoiceId: string;
   status: string;
   PaidAt: Date;
   createdAt: Date;
