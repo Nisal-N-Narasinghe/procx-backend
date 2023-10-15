@@ -9,10 +9,13 @@ export class Item {
   itemName: string;
 
   @Column()
-  status: string;
+  restricted: boolean;
 
   @Column()
   description: string;
+
+  @Column()
+  imageUrl: string;
 
   @Column()
   createdAt: Date;

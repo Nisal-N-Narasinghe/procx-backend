@@ -1,13 +1,13 @@
 export type CreateItemParams = {
   itemName: string;
-  status: string;
+  restricted: boolean;
   description: string;
-  createdAt: Date;
+  imageUrl: string;
 };
 
 export type UpdateItemParams = {
   itemName: string;
-  status: string;
+  restricted: boolean;
   description: string;
-  createdAt: Date;
+  imageUrl: string;
 };
