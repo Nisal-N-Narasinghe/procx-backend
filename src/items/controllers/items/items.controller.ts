@@ -1,3 +1,4 @@
+import { UpdateItemDto } from 'src/items/dtos/UpdateItem.dto';
 import { CreateItemDto } from './../../dtos/CreateItem.dto';
 import { ItemsService } from './../../services/items/items.service';
 import {
@@ -10,7 +11,6 @@ import {
   Post,
   Put,
 } from '@nestjs/common';
-import { UpdateItemDto } from 'src/items/dtos/UpdateItem.dto';
 
 import { Item } from 'src/typeorm/entities/Item';
 

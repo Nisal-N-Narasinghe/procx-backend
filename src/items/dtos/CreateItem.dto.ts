@@ -1,6 +1,6 @@
 export class CreateItemDto {
   itemName: string;
-  status: string;
+  restricted: boolean;
   description: string;
-  createdAt: Date;
+  imageUrl: string;
 }
