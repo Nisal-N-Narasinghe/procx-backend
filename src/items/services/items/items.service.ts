@@ -15,6 +15,16 @@ export class ItemsService {
     return this.itemRepository.find();
   }
 
+  async findItemById(id: number): Promise<Item> {
+    const item = await this.itemRepository.findOneBy({ id });
+
+    if (!item) {
+      throw new NotFoundException(`Item with ID ${id} not found`);
+    }
+
+    return item;
+  }
+
   createItem(itemDetails: CreateItemParams) {
     const newItem = this.itemRepository.create({
       ...itemDetails,
