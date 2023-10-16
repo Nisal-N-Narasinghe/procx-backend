@@ -6,6 +6,7 @@ import {
   Controller,
   Delete,
   Get,
+  NotFoundException,
   Param,
   ParseIntPipe,
   Post,
@@ -21,6 +22,11 @@ export class ItemsController {
   @Get()
   async getItems() {
     return this.itemService.findItem();
+  }
+
+  @Get(':id')
+  async getItemById(@Param('id', ParseIntPipe) id: number): Promise<Item> {
+    return this.itemService.findItemById(id);
   }
 
   @Post()
