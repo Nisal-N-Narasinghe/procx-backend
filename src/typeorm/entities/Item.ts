@@ -14,6 +14,9 @@ export class Item {
   @Column()
   description: string;
 
+  @Column({ nullable: true })
+  price: number;
+
   @Column()
   imageUrl: string;
 

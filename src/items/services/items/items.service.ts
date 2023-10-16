@@ -1,4 +1,8 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  Injectable,
+  NotFoundException,
+  BadRequestException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Item } from 'src/typeorm/entities/Item';
 import { CreateItemParams, UpdateItemParams } from 'src/utils/ItemTypes';
@@ -26,11 +30,25 @@ export class ItemsService {
   }
 
   createItem(itemDetails: CreateItemParams) {
-    const newItem = this.itemRepository.create({
-      ...itemDetails,
-      createdAt: new Date(),
-    });
-    return this.itemRepository.save(newItem); // async, so return the promise and wait
+    if (!itemDetails.itemName) {
+      throw new BadRequestException('Name is required field');
+    }
+    if (!itemDetails.description) {
+      throw new BadRequestException('Description is required field');
+    }
+    if (!itemDetails.imageUrl) {
+      throw new BadRequestException('Image is required field');
+    }
+    if (!itemDetails.restricted) {
+      throw new BadRequestException('Restriction is required field');
+    } else {
+      const newItem = this.itemRepository.create({
+        ...itemDetails,
+        createdAt: new Date(),
+      });
+
+      return this.itemRepository.save(newItem); // async, so return the promise and wait
+    }
   }
 
   async updateItem(id, updateItemDetails: UpdateItemParams): Promise<Item> {
