@@ -8,6 +8,7 @@ import {
   Post,
   Put,
 } from '@nestjs/common';
+import { CreateOrderDto } from 'src/orders/dtos/CreateOrder.dto';
 import { CreateSupplierDto } from 'src/suppliers/dtos/CreateSupplier.dto';
 import { UpdateSupplierDto } from 'src/suppliers/dtos/UpdateSupplier.dto';
 import { SuppliersService } from 'src/suppliers/services/suppliers/suppliers.service';
@@ -22,9 +23,23 @@ export class SuppliersController {
     return this.supplierService.findSuppliers();
   }
 
+  @Get(':id')
+  async getSupplieryId(
+    @Param('id', ParseIntPipe) id: number,
+  ): Promise<Supplier> {
+    return this.supplierService.findSupplierById(id);
+  }
   @Post()
   createTodo(@Body() createSupplierDto: CreateSupplierDto) {
     return this.supplierService.createSupplier(createSupplierDto);
+  }
+
+  @Post(':id/orders')
+  assignOrders(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() createOrderDto: CreateOrderDto,
+  ) {
+    return this.supplierService.assignOrders(id, createOrderDto);
   }
 
   @Put(':id')

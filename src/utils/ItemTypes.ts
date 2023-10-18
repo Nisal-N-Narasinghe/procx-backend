@@ -3,6 +3,7 @@ export type CreateItemParams = {
   restricted: boolean;
   description: string;
   price: number;
+  qty: number;
   imageUrl: string;
 };
 
@@ -11,5 +12,6 @@ export type UpdateItemParams = {
   restricted: boolean;
   description: string;
   price: number;
+  qty: number;
   imageUrl: string;
 };

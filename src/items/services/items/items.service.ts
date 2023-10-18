@@ -16,7 +16,7 @@ export class ItemsService {
   ) {}
 
   findItem() {
-    return this.itemRepository.find();
+    return this.itemRepository.find({ relations: ['order'] });
   }
 
   async findItemById(id: number): Promise<Item> {
@@ -31,7 +31,7 @@ export class ItemsService {
 
   createItem(itemDetails: CreateItemParams) {
     if (!itemDetails.itemName) {
-      throw new BadRequestException('Name is required field');
+      throw new BadRequestException('Item Name is required field');
     }
     if (!itemDetails.description) {
       throw new BadRequestException('Description is required field');
