@@ -34,4 +34,7 @@ export class Order {
 
   @Column()
   createdAt: Date;
+
+  @Column({ nullable: true, default: 'pending' })
+  orderStatus: string;
 }
