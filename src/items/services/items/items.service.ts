@@ -1,4 +1,3 @@
-import { Order } from 'src/typeorm/entities/Order';
 import {
   Injectable,
   NotFoundException,

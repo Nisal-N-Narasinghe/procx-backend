@@ -12,7 +12,7 @@ import { CreateItemDto } from 'src/items/dtos/CreateItem.dto';
 import { CreateOrderDto } from 'src/orders/dtos/CreateOrder.dto';
 import { UpdateOrderDto } from 'src/orders/dtos/UpdateOrder.dto';
 import { OrdersService } from 'src/orders/services/orders/orders.service';
-import { CreateSupplierDto } from 'src/suppliers/dtos/CreateSupplier.dto';
+// import { CreateSupplierDto } from 'src/suppliers/dtos/CreateSupplier.dto';
 import { Order } from 'src/typeorm/entities/Order';
 
 @Controller('orders')
@@ -29,13 +29,13 @@ export class OrdersController {
     return this.orderService.createOrder(createOrderDto);
   }
 
-  @Post(':id/suppliers')
-  createSupplier(
-    @Param('id', ParseIntPipe) id: number,
-    @Body() createSupplierDto: CreateSupplierDto,
-  ) {
-    return this.orderService.createSupplier(id, createSupplierDto);
-  }
+  // @Post(':id/suppliers')
+  // createSupplier(
+  //   @Param('id', ParseIntPipe) id: number,
+  //   @Body() createSupplierDto: CreateSupplierDto,
+  // ) {
+  //   return this.orderService.createSupplier(id, createSupplierDto);
+  // }
 
   @Post(':id/items')
   createOrderItems(

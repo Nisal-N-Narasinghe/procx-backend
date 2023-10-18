@@ -3,9 +3,8 @@ import {
   Column,
   Entity,
   PrimaryGeneratedColumn,
-  JoinColumn,
-  OneToOne,
   OneToMany,
+  ManyToOne,
 } from 'typeorm';
 import { Item } from './Item';
 
@@ -21,8 +20,7 @@ export class Order {
   @Column()
   deliverDate: Date;
 
-  @OneToOne(() => Supplier)
-  @JoinColumn()
+  @ManyToOne(() => Supplier, (supplier) => supplier.orders)
   supplier: Supplier;
 
   @OneToMany(() => Item, (item) => item.order)

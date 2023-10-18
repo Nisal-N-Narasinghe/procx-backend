@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Order } from './Order';
 
 @Entity({ name: 'suppliers' })
 // @Entity({ name: 'suppliers' }) // setting the table name explicitly
@@ -23,6 +24,9 @@ export class Supplier {
 
   @Column()
   contact: string;
+
+  @OneToMany(() => Order, (order) => order.supplier)
+  orders: Order[];
 
   @Column()
   createdAt: Date;
