@@ -23,6 +23,10 @@ export class OrdersController {
   async getOrders() {
     return this.orderService.findOrders();
   }
+  @Get(':id')
+  async getOrderById(@Param('id', ParseIntPipe) id: number): Promise<Order> {
+    return this.orderService.findOrderById(id);
+  }
 
   @Post()
   createOrder(@Body() createOrderDto: CreateOrderDto) {

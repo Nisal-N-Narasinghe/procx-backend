@@ -7,7 +7,7 @@ import {
 import { InjectRepository } from '@nestjs/typeorm';
 import { Item } from 'src/typeorm/entities/Item';
 import { Order } from 'src/typeorm/entities/Order';
-import { Supplier } from 'src/typeorm/entities/Supplier';
+// import { Supplier } from 'src/typeorm/entities/Supplier';
 import { CreateItemParams } from 'src/utils/ItemTypes';
 import { CreateOrderParams, UpdateOrderParams } from 'src/utils/OrderTypes';
 // import { CreateSupplierParams } from 'src/utils/SupplierTypes';
@@ -67,6 +67,19 @@ export class OrdersService {
       createdAt: new Date(),
     });
     return await this.itemRepository.save(newItem);
+  }
+
+  async findOrderById(id: number): Promise<Order> {
+    const order = await this.orderRepository.findOne({
+      where: { id },
+      relations: ['supplier', 'items'],
+    });
+
+    if (!order) {
+      throw new NotFoundException(`Order with ID ${id} not found`);
+    }
+
+    return order;
   }
 
   async updateOrder(id, UpdateOrderParams: UpdateOrderParams): Promise<Order> {
