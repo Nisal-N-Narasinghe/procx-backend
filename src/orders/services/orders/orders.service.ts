@@ -5,8 +5,10 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { Item } from 'src/typeorm/entities/Item';
 import { Order } from 'src/typeorm/entities/Order';
 import { Supplier } from 'src/typeorm/entities/Supplier';
+import { CreateItemParams } from 'src/utils/ItemTypes';
 import { CreateOrderParams, UpdateOrderParams } from 'src/utils/OrderTypes';
 import { CreateSupplierParams } from 'src/utils/SupplierTypes';
 import { Repository } from 'typeorm';
@@ -18,10 +20,12 @@ export class OrdersService {
     private orderRepository: Repository<Order>,
     @InjectRepository(Supplier)
     private supplierRepository: Repository<Supplier>,
+    @InjectRepository(Item)
+    private itemRepository: Repository<Item>,
   ) {}
 
   findOrders() {
-    return this.orderRepository.find({ relations: ['supplier'] });
+    return this.orderRepository.find({ relations: ['supplier', 'items'] });
   }
 
   createOrder(orderDetails: CreateOrderParams) {
@@ -47,6 +51,22 @@ export class OrdersService {
     const savedSupplier = await this.supplierRepository.save(newSupplier);
     order.supplier = savedSupplier;
     return this.orderRepository.save(order); // async, so return the promise and wait
+  }
+
+  async createOrderItems(id: number, itemsDetails: CreateItemParams) {
+    const order = await this.orderRepository.findOneBy({ id });
+    if (!order) {
+      throw new HttpException(
+        `Order with ID ${id} not found`,
+        HttpStatus.BAD_REQUEST,
+      );
+    }
+    const newItem = this.itemRepository.create({
+      ...itemsDetails,
+      order,
+      createdAt: new Date(),
+    });
+    return await this.itemRepository.save(newItem);
   }
 
   async updateOrder(id, UpdateOrderParams: UpdateOrderParams): Promise<Order> {

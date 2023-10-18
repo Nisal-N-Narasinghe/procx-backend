@@ -1,10 +1,4 @@
-import {
-  Column,
-  Entity,
-  JoinColumn,
-  ManyToMany,
-  PrimaryGeneratedColumn,
-} from 'typeorm';
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { Order } from './Order';
 
 @Entity({ name: 'items' })
@@ -29,6 +23,9 @@ export class Item {
 
   @Column()
   imageUrl: string;
+
+  @ManyToOne(() => Order, (order) => order.items)
+  order: Order;
 
   @Column()
   createdAt: Date;

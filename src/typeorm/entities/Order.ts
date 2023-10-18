@@ -3,9 +3,9 @@ import {
   Column,
   Entity,
   PrimaryGeneratedColumn,
-  ManyToMany,
   JoinColumn,
   OneToOne,
+  OneToMany,
 } from 'typeorm';
 import { Item } from './Item';
 
@@ -24,6 +24,9 @@ export class Order {
   @OneToOne(() => Supplier)
   @JoinColumn()
   supplier: Supplier;
+
+  @OneToMany(() => Item, (item) => item.order)
+  items: Item[];
 
   @Column({ nullable: true, default: 'pending' })
   supplierstatus: string;

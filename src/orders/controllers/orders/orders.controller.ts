@@ -8,6 +8,7 @@ import {
   Post,
   Put,
 } from '@nestjs/common';
+import { CreateItemDto } from 'src/items/dtos/CreateItem.dto';
 import { CreateOrderDto } from 'src/orders/dtos/CreateOrder.dto';
 import { UpdateOrderDto } from 'src/orders/dtos/UpdateOrder.dto';
 import { OrdersService } from 'src/orders/services/orders/orders.service';
@@ -34,6 +35,14 @@ export class OrdersController {
     @Body() createSupplierDto: CreateSupplierDto,
   ) {
     return this.orderService.createSupplier(id, createSupplierDto);
+  }
+
+  @Post(':id/items')
+  createOrderItems(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() createItemsmDto: CreateItemDto,
+  ) {
+    return this.orderService.createOrderItems(id, createItemsmDto);
   }
 
   @Put(':id')

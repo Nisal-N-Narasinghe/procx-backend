@@ -1,3 +1,4 @@
+import { Order } from 'src/typeorm/entities/Order';
 import {
   Injectable,
   NotFoundException,
@@ -16,7 +17,7 @@ export class ItemsService {
   ) {}
 
   findItem() {
-    return this.itemRepository.find();
+    return this.itemRepository.find({ relations: ['order'] });
   }
 
   async findItemById(id: number): Promise<Item> {
