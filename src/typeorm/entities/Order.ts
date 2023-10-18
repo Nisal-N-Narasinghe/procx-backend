@@ -1,4 +1,13 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Supplier } from './Supplier';
+import {
+  Column,
+  Entity,
+  PrimaryGeneratedColumn,
+  ManyToMany,
+  JoinColumn,
+  OneToOne,
+} from 'typeorm';
+import { Item } from './Item';
 
 @Entity({ name: 'orders' })
 // @Entity({ name: 'suppliers' }) // setting the table name explicitly
@@ -12,16 +21,9 @@ export class Order {
   @Column()
   deliverDate: Date;
 
-  //Todo connect suppliers table
-  @Column()
-  supllier: string;
-
-  //Todo connect items table
-  @Column()
-  item: string;
-
-  @Column()
-  qty: number;
+  @OneToOne(() => Supplier)
+  @JoinColumn()
+  supplier: Supplier;
 
   @Column({ nullable: true, default: 'pending' })
   supplierstatus: string;

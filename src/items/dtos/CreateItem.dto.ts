@@ -3,5 +3,6 @@ export class CreateItemDto {
   restricted: boolean;
   description: string;
   price: number;
+  qty: number;
   imageUrl: string;
 }

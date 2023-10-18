@@ -1,4 +1,11 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+import { Order } from './Order';
 
 @Entity({ name: 'items' })
 export class Item {
@@ -16,6 +23,9 @@ export class Item {
 
   @Column({ nullable: true })
   price: number;
+
+  @Column({ nullable: true })
+  qty: number;
 
   @Column()
   imageUrl: string;

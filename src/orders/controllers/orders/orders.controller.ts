@@ -11,6 +11,7 @@ import {
 import { CreateOrderDto } from 'src/orders/dtos/CreateOrder.dto';
 import { UpdateOrderDto } from 'src/orders/dtos/UpdateOrder.dto';
 import { OrdersService } from 'src/orders/services/orders/orders.service';
+import { CreateSupplierDto } from 'src/suppliers/dtos/CreateSupplier.dto';
 import { Order } from 'src/typeorm/entities/Order';
 
 @Controller('orders')
@@ -18,25 +19,33 @@ export class OrdersController {
   constructor(private orderService: OrdersService) {}
 
   @Get()
-  async getSuppliers() {
+  async getOrders() {
     return this.orderService.findOrders();
   }
 
   @Post()
-  createTodo(@Body() createSupplierDto: CreateOrderDto) {
-    return this.orderService.createOrder(createSupplierDto);
+  createOrder(@Body() createOrderDto: CreateOrderDto) {
+    return this.orderService.createOrder(createOrderDto);
+  }
+
+  @Post(':id/suppliers')
+  createSupplier(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() createSupplierDto: CreateSupplierDto,
+  ) {
+    return this.orderService.createSupplier(id, createSupplierDto);
   }
 
   @Put(':id')
-  async updateSupplier(
+  async updateOrder(
     @Param('id', ParseIntPipe) id: number,
-    @Body() updateSupplierDto: UpdateOrderDto,
+    @Body() updateOrderDto: UpdateOrderDto,
   ): Promise<Order> {
-    return this.orderService.updateOrder(id, updateSupplierDto);
+    return this.orderService.updateOrder(id, updateOrderDto);
   }
 
   @Delete(':id')
-  async deleteSupplier(@Param('id', ParseIntPipe) id: number): Promise<Order> {
+  async deleteOrder(@Param('id', ParseIntPipe) id: number): Promise<Order> {
     return await this.orderService.deleteOrder(id);
   }
 }
