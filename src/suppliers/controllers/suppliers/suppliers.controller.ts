@@ -22,6 +22,12 @@ export class SuppliersController {
     return this.supplierService.findSuppliers();
   }
 
+  @Get(':id')
+  async getSupplieryId(
+    @Param('id', ParseIntPipe) id: number,
+  ): Promise<Supplier> {
+    return this.supplierService.findSupplierById(id);
+  }
   @Post()
   createTodo(@Body() createSupplierDto: CreateSupplierDto) {
     return this.supplierService.createSupplier(createSupplierDto);

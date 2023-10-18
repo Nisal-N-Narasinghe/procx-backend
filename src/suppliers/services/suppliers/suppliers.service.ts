@@ -18,6 +18,16 @@ export class SuppliersService {
     return this.supplierRepository.find();
   }
 
+  async findSupplierById(id: number): Promise<Supplier> {
+    const supplier = await this.supplierRepository.findOneBy({ id });
+
+    if (!supplier) {
+      throw new NotFoundException(`Supplier with ID ${id} not found`);
+    }
+
+    return supplier;
+  }
+
   createSupplier(supplierDetails: CreateSupplierParams) {
     const newSupplier = this.supplierRepository.create({
       ...supplierDetails,
