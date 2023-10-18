@@ -4,4 +4,5 @@ export class CreateOrderDto {
   supplierstatus: string;
   managerstatus: string;
   createdAt: Date;
+  orderStatus: string;
 }
