@@ -3,5 +3,6 @@ export class CreateOrderDto {
   deliverDate: Date;
   supplierstatus: string;
   managerstatus: string;
+  orderStatus: string;
   createdAt: Date;
 }

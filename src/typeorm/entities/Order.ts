@@ -32,6 +32,9 @@ export class Order {
   @Column({ nullable: true, default: 'pending' })
   managerstatus: string;
 
+  @Column({ nullable: true, default: 'pending' })
+  orderStatus: string;
+
   @Column()
   createdAt: Date;
 }
