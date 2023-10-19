@@ -5,5 +5,4 @@ export class CreateOrderDto {
   managerstatus: string;
   orderStatus: string;
   createdAt: Date;
-  orderStatus: string;
 }
