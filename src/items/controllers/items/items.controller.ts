@@ -30,7 +30,7 @@ export class ItemsController {
   }
 
   @Post()
-  createTodo(@Body() CreateItemDto: CreateItemDto) {
+  createItem(@Body() CreateItemDto: CreateItemDto) {
     return this.itemService.createItem(CreateItemDto);
   }
 
